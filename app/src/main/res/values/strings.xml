@@ -3,4 +3,10 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_maps">Maps</string>
+    <string name="button_send">SEND</string>
+    <string name="floating_getLocation">getLocation</string>
+    <string name="location">LOCATION</string>
+    <string name="description_icon_add_picture">image add picture</string>
+    <string name="add_photo">ADD PHOTO</string>
 </resources>
