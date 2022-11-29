@@ -15,11 +15,26 @@
         android:id="@+id/navigation_favorite"
         android:name="id.med.helpets.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_favorite_to_createPostActivity2"
+            app:destination="@id/createPostActivity" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="id.med.helpets.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+
+    <fragment
+        android:id="@+id/navigation_maps"
+        android:name="id.med.helpets.ui.maps.MapsFragment"
+        android:label="@string/title_maps"
+        tools:layout="@layout/fragment_maps" />
+    <activity
+        android:id="@+id/createPostActivity"
+        android:name="id.med.helpets.ui.createpost.CreatePostActivity"
+        android:label="activity_create_post"
+        tools:layout="@layout/activity_create_post" />
 </navigation>
