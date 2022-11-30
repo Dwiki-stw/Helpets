@@ -9,4 +9,11 @@
     <string name="location">LOCATION</string>
     <string name="description_icon_add_picture">image add picture</string>
     <string name="add_photo">ADD PHOTO</string>
+    <string name="login">LOGIN</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="txt_konfirm">Belum punya akun ?</string>
+    <string name="txt_register">Register</string>
+    <string name="edt_email">Masukkan email anda</string>
+    <string name="edt_password">Masukkan password anda</string>
 </resources>
