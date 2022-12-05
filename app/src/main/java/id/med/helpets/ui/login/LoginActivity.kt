@@ -3,9 +3,8 @@ package id.med.helpets.ui.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import id.med.helpets.MainActivity
-import id.med.helpets.R
 import id.med.helpets.databinding.ActivityLoginBinding
+import id.med.helpets.ui.main.MainActivity
 import id.med.helpets.ui.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
