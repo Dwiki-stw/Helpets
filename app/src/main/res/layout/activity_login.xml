@@ -41,14 +41,14 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ipt_email"
-        android:layout_width="321dp"
+        android:layout_width="330dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/txt_email"
         app:layout_constraintTop_toBottomOf="@+id/txt_email"
-        app:startIconDrawable="@drawable/ic_baseline_account_circle_24">
+        app:startIconDrawable="@drawable/ic_baseline_email_24">
         <id.med.helpets.ui.login.customview.EditTextEmail
             android:id="@+id/edt_email"
             android:layout_width="match_parent"
@@ -70,7 +70,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ipt_password"
-        android:layout_width="321dp"
+        android:layout_width="330dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/layout_shape"
@@ -90,7 +90,7 @@
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="321dp"
+        android:layout_width="330dp"
         android:layout_height="40dp"
         android:layout_marginTop="28dp"
         android:text="@string/login"
@@ -104,7 +104,7 @@
         android:id="@+id/txt_konfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="130dp"
+        android:layout_marginStart="137dp"
         android:layout_marginTop="8dp"
         android:text="@string/txt_konfirm"
         android:textSize="11sp"

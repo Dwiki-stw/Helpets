@@ -28,7 +28,7 @@ class EditTextWord : AppCompatEditText {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        hint = "Masukkan nama anda"
+        hint = ""
     }
 
     private fun init(){
@@ -44,7 +44,7 @@ class EditTextWord : AppCompatEditText {
                 setSelection(text!!.length)
                 if (s != null){
                     if (s.isEmpty()){
-                        error = "Lengkapi nama anda !"
+                        error = "Data tidak boleh kosong !"
                     }
                     else{
                         error = null

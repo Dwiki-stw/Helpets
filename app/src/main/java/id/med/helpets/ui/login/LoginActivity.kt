@@ -6,6 +6,7 @@ import android.os.Bundle
 import id.med.helpets.MainActivity
 import id.med.helpets.R
 import id.med.helpets.databinding.ActivityLoginBinding
+import id.med.helpets.ui.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -18,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         binding.tvRegis.setOnClickListener {
-            intent = Intent(this@LoginActivity, MainActivity::class.java)
+            intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
         }
 

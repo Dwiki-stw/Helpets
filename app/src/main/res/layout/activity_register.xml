@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".ui.register.RegisterActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="165dp"
+            android:layout_height="165dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_create"
+            style="@style/TextContext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/create_your_account"
+            android:textColor="@color/blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.124"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_logo" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ipt_nama"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.013"
+            app:layout_constraintStart_toStartOf="@+id/txt_create"
+            app:layout_constraintTop_toBottomOf="@+id/txt_create"
+            app:startIconDrawable="@drawable/ic_baseline_account_circle_24">
+            <id.med.helpets.ui.login.customview.EditTextWord
+                android:id="@+id/edt_nama"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/edt_nama"
+                android:background="@drawable/layout_shape"
+                android:backgroundTint="@color/abu"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ipt_email"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/ipt_nama"
+            app:layout_constraintTop_toBottomOf="@+id/ipt_nama"
+            app:startIconDrawable="@drawable/ic_baseline_email_24">
+            <id.med.helpets.ui.login.customview.EditTextEmail
+                android:id="@+id/edt_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/layout_shape"
+                android:backgroundTint="@color/abu"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ipt_nomor"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/ipt_email"
+            app:layout_constraintTop_toBottomOf="@+id/ipt_email"
+            app:startIconDrawable="@drawable/ic_baseline_call_24">
+            <id.med.helpets.ui.login.customview.EditTextWord
+                android:id="@+id/edt_nomor"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/layout_shape"
+                android:backgroundTint="@color/abu"
+                android:hint="@string/edt_nomor"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ipt_alamat"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/ipt_nomor"
+            app:layout_constraintTop_toBottomOf="@+id/ipt_nomor"
+            app:startIconDrawable="@drawable/ic_baseline_location_on_24">
+            <id.med.helpets.ui.login.customview.EditTextWord
+                android:id="@+id/edt_alamat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/abu"
+                android:background="@drawable/layout_shape"
+                android:hint="@string/edt_alamat"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ipt_password"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/ipt_alamat"
+            app:layout_constraintTop_toBottomOf="@+id/ipt_alamat"
+            app:startIconDrawable="@drawable/ic_baseline_vpn_key_24">
+            <id.med.helpets.ui.login.customview.EditTextPassword
+                android:id="@+id/edt_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/abu"
+                android:background="@drawable/layout_shape"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="340dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/register"
+            android:background="@drawable/layout_shape"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.455"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ipt_password" />
+
+        <TextView
+            android:id="@+id/txt_konfirm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/txt_konfirm_login"
+            android:textSize="11sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+
+        <TextView
+            android:id="@+id/tv_regis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textStyle="bold"
+            android:text="@string/txt_login"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@+id/txt_konfirm"
+            app:layout_constraintStart_toEndOf="@+id/txt_konfirm" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
