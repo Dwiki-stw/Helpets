@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/layout_shape"
-            android:backgroundTint="@color/abu"/>
+            android:backgroundTint="@color/abuabu"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -74,7 +74,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/layout_shape"
-        android:backgroundTint="@color/abu"
+        android:backgroundTint="@color/abuabu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/txt_password"
@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/layout_shape"
-            android:backgroundTint="@color/abu"/>
+            android:backgroundTint="@color/abuabu"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

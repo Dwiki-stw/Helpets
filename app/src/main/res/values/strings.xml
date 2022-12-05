@@ -16,4 +16,6 @@
     <string name="txt_register">Register</string>
     <string name="edt_email">Masukkan email anda</string>
     <string name="edt_password">Masukkan password anda</string>
+    <string name="text_sample">1 Km Away</string>
+    <string name="text_address">Jl. Tukad Balian no.179</string>
 </resources>

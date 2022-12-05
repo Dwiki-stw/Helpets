@@ -60,25 +60,21 @@
             app:layout_constraintTop_toBottomOf="@id/textdescription"
             app:layout_constraintStart_toStartOf="@id/textdescription"
             />
+
         <ToggleButton
             android:id="@+id/toggleButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:textOn=""
-            android:textOff=""
+            android:background="@drawable/favorite_icon"
             android:focusable="false"
             android:focusableInTouchMode="false"
-            android:background="@drawable/favorite_icon"
-            app:layout_constraintEnd_toEndOf="@id/imageview"
-           app:layout_constraintTop_toTopOf="@id/textdescription"
+            android:textOff=""
+            android:textOn=""
             app:layout_constraintBottom_toBottomOf="@id/text_address"
-            />
-
-
-
-
+            app:layout_constraintEnd_toEndOf="@id/imageview"
+            app:layout_constraintTop_toTopOf="@id/textdescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
