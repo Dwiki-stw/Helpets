@@ -14,13 +14,6 @@
     <string name="password">Password</string>
     <string name="txt_konfirm">Belum punya akun ?</string>
     <string name="txt_register">Register</string>
-    <string name="txt_konfirm_login">Sudah punya akun ?</string>
-    <string name="edt_nama">Masukkan nama anda</string>
     <string name="edt_email">Masukkan email anda</string>
     <string name="edt_password">Masukkan password anda</string>
-    <string name="create_your_account">Create Your Account</string>
-    <string name="edt_nomor">Masukkan nomor telepon anda</string>
-    <string name="edt_alamat">Masukkan alamat anda</string>
-    <string name="register">REGISTER</string>
-    <string name="txt_login">Login</string>
 </resources>

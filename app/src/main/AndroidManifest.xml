@@ -34,13 +34,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.register.RegisterActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".ui.favorite.FavoriteActivity"
             android:exported="false">
             <meta-data
