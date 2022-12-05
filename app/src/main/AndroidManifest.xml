@@ -61,7 +61,7 @@
             android:value="AIzaSyCTmeWmx_v0-8iS9uEqUNdLpMybksx9Uuo" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="false"
             android:label="@string/app_name">
             <meta-data
