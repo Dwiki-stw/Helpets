@@ -16,4 +16,5 @@
     <string name="txt_register">Register</string>
     <string name="edt_email">Masukkan email anda</string>
     <string name="edt_password">Masukkan password anda</string>
+    <string name="logout">Logout</string>
 </resources>
