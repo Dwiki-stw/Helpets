@@ -26,4 +26,5 @@
     <string name="edt_nama">Masukkan nama anda</string>
     <string name="logout">LOGOUT</string>
     <string name="txt_login">LOGIN</string>
+    <string name="username">Username</string>
 </resources>
