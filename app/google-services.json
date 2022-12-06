@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "124531678114",
+    "firebase_url": "https://helpets-1db9e-default-rtdb.firebaseio.com",
+    "project_id": "helpets-1db9e",
+    "storage_bucket": "helpets-1db9e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:124531678114:android:13a68457aeac89e5e070fb",
+        "android_client_info": {
+          "package_name": "id.med.helpets"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "124531678114-4d6h2qa3bq351f1cietic5pmc1te03hd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.med.helpets",
+            "certificate_hash": "3e269f6da3b2ecbfda66cfd9c0e158a04d9cc835"
+          }
+        },
+        {
+          "client_id": "124531678114-lr3916imkdmk960h80e0hfqik5rabaq8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.med.helpets",
+            "certificate_hash": "ffca8bf96abefdd5ae711edfd65aed101ac1cb22"
+          }
+        },
+        {
+          "client_id": "124531678114-7k4ioeauriscj9qepenf1qv0hf9lsrh0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbjnGPQu050D_Y0rauPLUXqmxWEec4zkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "124531678114-7k4ioeauriscj9qepenf1qv0hf9lsrh0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

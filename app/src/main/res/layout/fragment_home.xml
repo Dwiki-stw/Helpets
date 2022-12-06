@@ -7,6 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment" >
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_row_user"/>
+
     <TextView
         android:id="@+id/text_home"
         android:layout_width="match_parent"
