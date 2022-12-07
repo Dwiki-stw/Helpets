@@ -16,5 +16,6 @@
     <color name="merah">#FE7B78</color>
     <color name="grey">#CECECE</color>
     <color name="blue_light">#B8CAED</color>
+    <color name="blueAlpha">#10001E64</color>
 
 </resources>

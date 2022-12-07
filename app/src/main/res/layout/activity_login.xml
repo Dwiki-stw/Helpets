@@ -53,8 +53,7 @@
             android:id="@+id/edt_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/layout_shape"
-            android:backgroundTint="@color/abuabu"/>
+            android:background="@drawable/layout_shape"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -84,8 +83,7 @@
             android:id="@+id/edt_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/layout_shape"
-            android:backgroundTint="@color/abuabu"/>
+            android:background="@drawable/layout_shape"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -121,5 +119,15 @@
         android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="@+id/txt_konfirm"
         app:layout_constraintStart_toEndOf="@+id/txt_konfirm" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/signInButton"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_shape"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_konfirm" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

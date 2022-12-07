@@ -11,6 +11,7 @@
         android:layout_height="220dp"
         android:padding="6dp"
         app:cardCornerRadius="12dp"
+        app:cardElevation="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -27,7 +28,8 @@
                 android:layout_height="155dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/dog"
-                android:transitionName="story" />
+                android:transitionName="story"
+                android:contentDescription="@string/image_description" />
 
         </androidx.cardview.widget.CardView>
 
@@ -35,37 +37,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="17dp"
             android:layout_marginBottom="30dp"
             android:text="@string/username"
             android:textColor="@color/black"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="17dp"
             android:layout_marginBottom="10dp"
             android:maxLines="1"
             android:text="@string/text_address"
             android:textSize="12sp" />
 
-    </com.google.android.material.card.MaterialCardView>
+        <ToggleButton
+            android:id="@+id/saved_toggle_button"
+            android:layout_width="39dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="172dp"
+            android:layout_marginEnd="12dp"
+            android:layout_gravity="end"
+            android:background="@drawable/favorite_icon"
+            android:gravity="bottom"
+            android:textOff=""
+            android:textOn=""/>
 
-    <ToggleButton
-        android:id="@+id/saved_toggle_button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="13dp"
-        android:background="@drawable/favorite_icon"
-        android:backgroundTint="@color/merah"
-        android:gravity="bottom"
-        android:textOff=""
-        android:textOn=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
