@@ -9,16 +9,7 @@
     <string name="location">LOCATION</string>
     <string name="description_icon_add_picture">image add picture</string>
     <string name="add_photo">ADD PHOTO</string>
-    <string name="login">LOGIN</string>
-    <string name="email">Email</string>
     <string name="register">REGISTER</string>
-    <string name="password">Password</string>
-    <string name="txt_konfirm">Belum punya akun ?</string>
-    <string name="txt_register">Register</string>
-    <string name="edt_email">Masukkan email anda</string>
-    <string name="edt_password">Masukkan password anda</string>
-    <string name="text_sample">1 Km Away</string>
-    <string name="text_address">Jl. Tukad Balian no.179</string>
     <string name="create_your_account">Create Your Account</string>
     <string name="edt_nomor">Masukkan nomor telepon anda</string>
     <string name="edt_alamat">Masukkan alamat anda</string>
@@ -27,4 +18,18 @@
     <string name="logout">LOGOUT</string>
     <string name="txt_login">LOGIN</string>
     <string name="username">Username</string>
+    <string name="text_sample">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing</string>
+    <string name="text_date">00-00-0000</string>
+    <string name="text_address">Jl. Tukad Balian gang jeger No.179, Renon, Denpasar Selatan</string>
+    <string name="description">Description...</string>
+    <string name="cat">cat</string>
+    <string name="dog">dog</string>
+    <string name="login">LOGIN</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="txt_konfirm">Belum punya akun ?</string>
+    <string name="txt_register">Register</string>
+    <string name="edt_email">Masukkan email anda</string>
+    <string name="edt_password">Masukkan password anda</string>
+    <string name="create_post">CREATE POST</string>
 </resources>

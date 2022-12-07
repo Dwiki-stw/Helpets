@@ -3,9 +3,8 @@ package id.med.helpets.ui.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import id.med.helpets.databinding.ActivityLoginBinding
 import id.med.helpets.ui.main.MainActivity
-import id.med.helpets.ui.register.RegisterActivity
+import id.med.helpets.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -18,7 +17,7 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         binding.tvRegis.setOnClickListener {
-            intent = Intent(this@LoginActivity, RegisterActivity::class.java)
+            intent = Intent(this@LoginActivity, MainActivity::class.java)
             startActivity(intent)
         }
 

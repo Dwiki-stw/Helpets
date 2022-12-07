@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "124531678114-0rsqf3hlf5aurm4kop5g6m84090iqtgv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.med.helpets",
+            "certificate_hash": "4d0b8b12b0cb32230c170d4f0239193345a02353"
+          }
+        },
+        {
           "client_id": "124531678114-4d6h2qa3bq351f1cietic5pmc1te03hd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -28,6 +36,14 @@
           "android_info": {
             "package_name": "id.med.helpets",
             "certificate_hash": "ffca8bf96abefdd5ae711edfd65aed101ac1cb22"
+          }
+        },
+        {
+          "client_id": "124531678114-tqmhq0nj16imp1geg68pogcf32gc8q7i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.med.helpets",
+            "certificate_hash": "a58153caaae3e9d48d469a15736d98398b5134d2"
           }
         },
         {
