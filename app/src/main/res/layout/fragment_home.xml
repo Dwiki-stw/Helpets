@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="21dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:lineSpacingExtra="1sp"
         android:text="@string/hello"
         android:textColor="@color/blue_dark"
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="17dp"
         android:lineSpacingExtra="1sp"
         android:text="@string/windah_basudara"
         android:textColor="@color/merah"
@@ -57,7 +57,7 @@
         app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip3"
+            android:id="@+id/chip_nearest"
             style="@style/CustomChipStyle"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             android:textAlignment="center" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip2"
+            android:id="@+id/chip_dogs"
             style="@style/CustomChipStyle"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
             android:textAlignment="center" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/chip"
+            android:id="@+id/chip_cats"
             style="@style/CustomChipStyle"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
@@ -92,5 +92,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chipGroup"
         tools:listitem="@layout/item_row_user" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/addPets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:clickable="true"
+        android:contentDescription="@string/add_pets"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_add_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

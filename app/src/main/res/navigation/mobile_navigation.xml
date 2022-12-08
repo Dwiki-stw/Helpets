@@ -9,16 +9,17 @@
         android:id="@+id/navigation_home"
         android:name="id.med.helpets.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_createPostActivity"
+            app:destination="@id/createPostActivity" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_favorite"
         android:name="id.med.helpets.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" >
-        <action
-            android:id="@+id/action_navigation_favorite_to_createPostActivity2"
-            app:destination="@id/createPostActivity" />
     </fragment>
 
     <fragment

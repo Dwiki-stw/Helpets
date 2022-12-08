@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerOptions
@@ -51,13 +50,30 @@ class HomeFragment : Fragment() {
       val manager = LinearLayoutManager(context)
       manager.reverseLayout = true
       manager.stackFromEnd = true
+
+      addPets()
+
       binding.rvPets.layoutManager = manager
+
       adapter = ListPetsAdapter(options)
       binding.rvPets.adapter =  adapter
       binding.rvPets.itemAnimator = null
 
+      binding.chipNearest.isFocusedByDefault
+
+      binding.chipDogs.setOnClickListener {
+          Toast.makeText(context, "WOII ANJING", Toast.LENGTH_SHORT).show()
+      }
+
+
       return root
   }
+
+    private fun addPets(){
+        binding.addPets.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_createPostActivity)
+        }
+    }
 
     override fun onResume() {
         super.onResume()
@@ -71,6 +87,10 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun sortChipDogs() {
+
     }
 
     companion object {
