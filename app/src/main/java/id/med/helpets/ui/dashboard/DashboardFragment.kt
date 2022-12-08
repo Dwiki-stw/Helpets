@@ -12,7 +12,6 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import id.med.helpets.R
 import id.med.helpets.databinding.FragmentDashboardBinding
-import id.med.helpets.ui.createpost.CreatePostActivity
 
 class DashboardFragment : Fragment() {
 
@@ -32,10 +31,6 @@ private var _binding: FragmentDashboardBinding? = null
   }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.floatingButton.setOnClickListener {
-          it.findNavController().navigate(R.id.action_navigation_favorite_to_createPostActivity2)
-        }
     }
 
 

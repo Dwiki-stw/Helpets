@@ -45,4 +45,5 @@
     <string name="edt_email">Masukkan email anda</string>
     <string name="edt_password">Masukkan password anda</string>
     <string name="create_post">CREATE POST</string>
+    <string name="add_pets">Add Pets</string>
 </resources>
