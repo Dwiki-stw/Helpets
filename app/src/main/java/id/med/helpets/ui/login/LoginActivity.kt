@@ -5,15 +5,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import com.google.android.gms.auth.api.credentials.IdToken
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.GoogleAuthCredential
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -95,8 +94,14 @@ class LoginActivity : AppCompatActivity() {
 
     private fun updateUI(currentUser: FirebaseUser?){
         if (currentUser != null){
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            Toast.makeText(this, "Login Berhasil !", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            intent.putExtra("email", currentUser.email)
+            intent.putExtra("name", currentUser.displayName)
             finish()
+        }
+        else{
+            Toast.makeText(this, "Login Gagal", Toast.LENGTH_SHORT).show()
         }
     }
 

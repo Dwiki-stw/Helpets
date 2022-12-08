@@ -7,12 +7,15 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import id.med.helpets.R
 import id.med.helpets.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
-private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +24,8 @@ private lateinit var binding: ActivityMainBinding
         setContentView(binding.root)
 
         supportActionBar?.hide()
+
+        auth = Firebase.auth
 
         val navView: BottomNavigationView = binding.navView
 

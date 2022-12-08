@@ -12,6 +12,8 @@ import androidx.lifecycle.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -28,6 +30,7 @@ class HomeFragment : Fragment() {
     private lateinit var petsRecycleView: RecyclerView
     private lateinit var adapter: ListPetsAdapter
     private lateinit var db: FirebaseDatabase
+    private lateinit var auth: FirebaseAuth
     private val binding get() = _binding!!
 
   override fun onCreateView(
@@ -39,6 +42,8 @@ class HomeFragment : Fragment() {
       _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
       val root: View = binding.root
+
+      auth = Firebase.auth
 
       db = Firebase.database
 
