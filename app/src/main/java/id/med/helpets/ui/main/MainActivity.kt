@@ -12,6 +12,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import id.med.helpets.R
 import id.med.helpets.databinding.ActivityMainBinding
+import id.med.helpets.ui.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -26,6 +27,17 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         auth = Firebase.auth
+
+        val name = intent.getStringExtra("name")
+
+        val mFragmentManager = supportFragmentManager
+        val mFragmentTransaction = mFragmentManager.beginTransaction()
+        val mFragment = HomeFragment()
+
+        val bundle = Bundle()
+        bundle.putString("name", name)
+        mFragment.arguments = bundle
+        mFragmentTransaction.add(R.id.fragment_home, mFragment).commit()
 
         val navView: BottomNavigationView = binding.navView
 
