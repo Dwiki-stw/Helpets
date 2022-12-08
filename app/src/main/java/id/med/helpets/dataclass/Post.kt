@@ -1,16 +1,19 @@
 package id.med.helpets.dataclass
 
+import android.os.Parcelable
 import com.google.firebase.database.IgnoreExtraProperties
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @IgnoreExtraProperties
 data class Post(
-    val id: String,
-    val name: String,
-    val description: String,
-    val photoUrl: String,
-    val category: String,
-    val address: String,
-    val lat: Double,
-    val lon: Double,
-    val date: Long
-)
+    var id: String? = "",
+    var name: String? = "",
+    var description: String? = "",
+    var photoUrl: String? = "",
+    var category: String? = "",
+    var address: String? = "",
+    var lat: Double? = 0.0,
+    var lon: Double? = 0.0,
+    var date: Long ? = 0
+): Parcelable

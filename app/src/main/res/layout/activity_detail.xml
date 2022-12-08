@@ -24,8 +24,9 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/detail_img"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:contentDescription="@string/image_detail_desc"
                 android:scaleType="centerCrop"
                 android:src="@drawable/dog" />
@@ -77,6 +78,7 @@
             android:layout_width="379dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginStart="17dp"
             android:gravity="center_vertical"
             android:lineSpacingExtra="4sp"
             android:maxLines="7"
@@ -92,6 +94,7 @@
             android:layout_width="379dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_marginStart="17dp"
             android:gravity="center_vertical"
             android:lineSpacingExtra="4sp"
             android:text="@string/posted_by"
