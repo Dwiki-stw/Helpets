@@ -59,6 +59,10 @@ class CreatePostActivity : AppCompatActivity() {
 
         setupLoading()
 
+        binding.buttonBack.setOnClickListener {
+            finish()
+        }
+
         binding.tvLocation.setOnClickListener {
             if (binding.tvLocation.text.length == ADDRESS.length){
                 binding.tvLocation.text = shortAddress(ADDRESS)
@@ -77,7 +81,7 @@ class CreatePostActivity : AppCompatActivity() {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
 
-        binding.toggleButton.addOnButtonCheckedListener { group, checkedId, isChecked ->
+        binding.toggleButton.addOnButtonCheckedListener { _, checkedId, isChecked ->
             if (isChecked){
                 when(checkedId){
                     binding.btnCat.id -> CATEGORY = "cat"
@@ -89,11 +93,16 @@ class CreatePostActivity : AppCompatActivity() {
         }
 
         binding.buttonSend.setOnClickListener {
-            if(checkNotNull()){
+            if(checkData()){
                 sendPost(image)
             }
 
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     private fun sendPost(image: Uri){
@@ -123,23 +132,9 @@ class CreatePostActivity : AppCompatActivity() {
         }.addOnCompleteListener { task ->
             if (task.isSuccessful){
                 val url = task.result.toString()
-                val description = binding.tvDecription.text.toString()
-
-                //create Post
-                val post = Post(
-                    "id",
-                    "test",
-                    description,
-                    url,
-                    "cat",
-                    ADDRESS,
-                    LAT,
-                    LON,
-                    Date().time
-                )
 
                 //push to database
-                insertToDatabase(post)
+                insertToDatabase(url)
 
             }else{
                 loading.cancel()
@@ -148,19 +143,38 @@ class CreatePostActivity : AppCompatActivity() {
         }
     }
 
-    private fun insertToDatabase(post: Post){
+    private fun insertToDatabase(url: String){
         val databaseRef = db.reference.child(POST)
+        val description = binding.tvDecription.text.toString()
 
-        databaseRef.push().setValue(post) { error, _ ->
+        val push = databaseRef.push()
+        val id = push.key
+
+        //create Post
+        val post = Post(
+            id,
+            "test",
+            description,
+            url,
+            CATEGORY,
+            ADDRESS,
+            LAT,
+            LON,
+            Date().time
+        )
+
+
+        val send = push.setValue(post) { error, _ ->
             if (error != null) {
                 loading.cancel()
-                Toast.makeText(this, "Gagal" + error.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Upload Gagal" + error.message, Toast.LENGTH_SHORT).show()
             } else {
                 loading.cancel()
                 Toast.makeText(this, "Terikirm", Toast.LENGTH_SHORT).show()
                 finish()
             }
         }
+
     }
 
     private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()){ uri ->
@@ -228,7 +242,7 @@ class CreatePostActivity : AppCompatActivity() {
         return address.substring(0..25) + "…"
     }
 
-    private fun checkNotNull(): Boolean{
+    private fun checkData(): Boolean{
         val description = binding.tvDecription.text.toString()
 
         if (description.isNotEmpty()){
