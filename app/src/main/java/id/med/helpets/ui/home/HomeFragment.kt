@@ -47,7 +47,7 @@ class HomeFragment : Fragment() {
 //      val firebaseUser = auth.currentUser
 //
 //      val name = firebaseUser?.displayName
-
+//
 //      binding.tvDisplayUsername.text = name
 
       auth = Firebase.auth
@@ -67,39 +67,45 @@ class HomeFragment : Fragment() {
       binding.chipNearest.isChecked = true
 
       binding.chipNearest.setOnClickListener {
+          showLoading(true)
           petsRef.addListenerForSingleValueEvent( object : ValueEventListener {
               override fun onDataChange(snapshot: DataSnapshot) {
                   setUpRecycleView(snapshot)
+                  showLoading(false)
               }
 
               override fun onCancelled(error: DatabaseError) {
-                  TODO("Not yet implemented")
+                  Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
               }
 
           })
       }
 
       binding.chipDogs.setOnClickListener {
+          showLoading(true)
           petsRef.orderByChild("category").equalTo("dog").addListenerForSingleValueEvent( object : ValueEventListener {
               override fun onDataChange(snapshot: DataSnapshot) {
                   setUpRecycleView(snapshot)
+                  showLoading(false)
               }
 
               override fun onCancelled(error: DatabaseError) {
-                  TODO("Not yet implemented")
+                  Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
               }
 
           })
       }
 
       binding.chipCats.setOnClickListener {
+          showLoading(true)
           petsRef.orderByChild("category").equalTo("cat").addListenerForSingleValueEvent( object :ValueEventListener {
               override fun onDataChange(snapshot: DataSnapshot) {
                   setUpRecycleView(snapshot)
+                  showLoading(false)
               }
 
               override fun onCancelled(error: DatabaseError) {
-                  TODO("Not yet implemented")
+                  Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
               }
 
           })
@@ -113,18 +119,16 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         auth = Firebase.auth
         db = Firebase.database
-        showLoading(true)
-        Handler().postDelayed({
-            showLoading(false)
-        }, 1500)
         val petsRef = db.reference.child(MESSAGES_CHILD)
+        showLoading(true)
         petsRef.addListenerForSingleValueEvent( object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 setUpRecycleView(snapshot)
+                showLoading(false)
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
             }
 
         })

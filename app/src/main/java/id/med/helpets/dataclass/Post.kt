@@ -15,5 +15,5 @@ data class Post(
     var address: String? = "",
     var lat: Double? = 0.0,
     var lon: Double? = 0.0,
-    var date: Long ? = 0
+    var date: Long? = 0
 ): Parcelable
