@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Helpets</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="title_profile">Profile</string>
     <string name="title_maps">Maps</string>
     <string name="button_send">SEND</string>
     <string name="floating_getLocation">getLocation</string>
@@ -30,7 +30,7 @@
     <string name="image_description">homeless_pet</string>
     <string name="ready_to_save_some_pets_today">Ready to save some pets today?</string>
     <string name="hello">Hello</string>
-    <string name="chip_1">Nearest Pets</string>
+    <string name="chip_1">Recently</string>
     <string name="chip_2">Dogs</string>
     <string name="chip_3">Cats</string>
     <string name="text_date">00-00-0000</string>

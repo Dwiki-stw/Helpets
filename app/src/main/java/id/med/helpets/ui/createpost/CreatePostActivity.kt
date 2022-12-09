@@ -3,6 +3,7 @@ package id.med.helpets.ui.createpost
 import android.Manifest
 import android.app.Dialog
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.location.Geocoder
 import android.net.Uri
@@ -265,7 +266,7 @@ class CreatePostActivity : AppCompatActivity() {
         params.gravity = Gravity.CENTER
 
         window.attributes = params
-        loading.window?.setBackgroundDrawable(ColorDrawable(android.R.color.transparent))
+        loading.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         loading.setTitle(null)
         loading.setCancelable(false)

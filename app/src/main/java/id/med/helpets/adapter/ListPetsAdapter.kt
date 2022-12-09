@@ -9,12 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.database.DataSnapshot
 import id.med.helpets.R
 import id.med.helpets.databinding.ItemRowUserBinding
 import id.med.helpets.dataclass.Post
 import id.med.helpets.ui.detail.DetailActivity
 
-class ListPetsAdapter (options: FirebaseRecyclerOptions<Post>): FirebaseRecyclerAdapter<Post, ListPetsAdapter.PetsViewHolder>(options) {
+class ListPetsAdapter (private val dataSnapshot: DataSnapshot): RecyclerView.Adapter<ListPetsAdapter.PetsViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetsViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -23,17 +24,19 @@ class ListPetsAdapter (options: FirebaseRecyclerOptions<Post>): FirebaseRecycler
         return PetsViewHolder(binding)
     }
 
-    override fun onBindViewHolder(
-        holder: PetsViewHolder,
-        position: Int,
-        model: Post
-    ) {
-        val result = getItem(position)
-        holder.bind(result)
+    override fun onBindViewHolder(holder: PetsViewHolder, position: Int) {
+        val result = dataSnapshot.children.elementAt(position)?.getValue(Post::class.java)
+        result?.let { holder.bind(it) }
         val itemView = holder.itemView
         itemView.setOnClickListener {
-            toDetailPost(itemView, model)
+            if (result != null) {
+                toDetailPost(itemView, result)
+            }
         }
+    }
+
+    override fun getItemCount(): Int {
+        return dataSnapshot.childrenCount.toInt()
     }
 
     private fun toDetailPost(itemView: View, data: Post) {
@@ -46,10 +49,10 @@ class ListPetsAdapter (options: FirebaseRecyclerOptions<Post>): FirebaseRecycler
         fun bind(item: Post) {
             binding.tvUsername.text = item.name
             binding.tvAddress.text = item.address
-            Log.d("PPPP", item.name.toString())
             Glide.with(itemView.context)
                 .load(item.photoUrl)
                 .into(binding.ivStory)
         }
     }
+
 }
