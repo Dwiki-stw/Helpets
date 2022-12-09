@@ -44,9 +44,6 @@ class HomeFragment : Fragment() {
 
       auth = Firebase.auth
 
-      val bundle = arguments
-      val name = bundle!!.getString("name")
-
       db = Firebase.database
 
       val petsRef = db.reference.child(MESSAGES_CHILD)

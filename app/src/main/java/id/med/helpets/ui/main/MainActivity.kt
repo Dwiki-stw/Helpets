@@ -16,7 +16,7 @@ import id.med.helpets.ui.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var auth: FirebaseAuth
+    //private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,18 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        auth = Firebase.auth
-
-        val name = intent.getStringExtra("name")
-
-        val mFragmentManager = supportFragmentManager
-        val mFragmentTransaction = mFragmentManager.beginTransaction()
-        val mFragment = HomeFragment()
-
-        val bundle = Bundle()
-        bundle.putString("name", name)
-        mFragment.arguments = bundle
-        mFragmentTransaction.add(R.id.fragment_home, mFragment).commit()
+//        auth = Firebase.auth
 
         val navView: BottomNavigationView = binding.navView
 

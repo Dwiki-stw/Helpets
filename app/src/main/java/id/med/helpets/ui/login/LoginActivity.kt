@@ -1,6 +1,7 @@
 package id.med.helpets.ui.login
 
 import android.app.Activity
+import android.app.FragmentManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,6 +19,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import id.med.helpets.R
 import id.med.helpets.databinding.ActivityLoginBinding
+import id.med.helpets.ui.home.HomeFragment
 import id.med.helpets.ui.main.MainActivity
 import id.med.helpets.ui.register.RegisterActivity
 
@@ -40,8 +42,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnLogin.setOnClickListener {
-            val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            startActivity(intent)
+            val email = binding.edtEmail.text.toString()
+            val password = binding.edtPassword.text.toString()
+            login(email, password)
         }
 
         val gso = GoogleSignInOptions
@@ -96,13 +99,28 @@ class LoginActivity : AppCompatActivity() {
         if (currentUser != null){
             Toast.makeText(this, "Login Berhasil !", Toast.LENGTH_SHORT).show()
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            intent.putExtra("email", currentUser.email)
-            intent.putExtra("name", currentUser.displayName)
+//            intent.putExtra("email", currentUser.email)
+//            intent.putExtra("name", currentUser.displayName)
+            startActivity(intent)
             finish()
         }
         else{
             Toast.makeText(this, "Login Gagal", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun login(email: String, password: String){
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this){
+                if (it.isSuccessful){
+                    Toast.makeText(this, "Login Berhasil !", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                else{
+                    Toast.makeText(this, "Login Gagal !", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 
     companion object{
