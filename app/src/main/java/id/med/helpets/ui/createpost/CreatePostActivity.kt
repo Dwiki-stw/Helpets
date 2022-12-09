@@ -84,8 +84,8 @@ class CreatePostActivity : AppCompatActivity() {
         binding.toggleButton.addOnButtonCheckedListener { _, checkedId, isChecked ->
             if (isChecked){
                 when(checkedId){
-                    binding.btnCat.id -> CATEGORY = "cat"
-                    binding.btnDog.id -> CATEGORY = "dog"
+                    binding.btnCat.id -> CATEGORY = "CAT"
+                    binding.btnDog.id -> CATEGORY = "DOG"
                 }
             }else{
                 CATEGORY = "category"
@@ -164,7 +164,7 @@ class CreatePostActivity : AppCompatActivity() {
         )
 
 
-        val send = push.setValue(post) { error, _ ->
+        push.setValue(post) { error, _ ->
             if (error != null) {
                 loading.cancel()
                 Toast.makeText(this, "Upload Gagal" + error.message, Toast.LENGTH_SHORT).show()
