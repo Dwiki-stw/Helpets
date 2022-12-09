@@ -44,6 +44,12 @@ class HomeFragment : Fragment() {
 
       auth = Firebase.auth
 
+      val firebaseUser = auth.currentUser
+
+      val name = firebaseUser?.displayName
+
+      binding.tvDisplayUsername.text = name
+
       db = Firebase.database
 
       val petsRef = db.reference.child(MESSAGES_CHILD)
