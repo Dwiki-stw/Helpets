@@ -18,14 +18,14 @@
     <fragment
         android:id="@+id/navigation_favorite"
         android:name="id.med.helpets.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_favorite"
         tools:layout="@layout/fragment_dashboard" >
     </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="id.med.helpets.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_profile"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment

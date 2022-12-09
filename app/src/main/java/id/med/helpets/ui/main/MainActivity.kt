@@ -7,12 +7,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import id.med.helpets.R
 import id.med.helpets.databinding.ActivityMainBinding
-import id.med.helpets.ui.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -24,6 +20,19 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
+
+
+//        val name = intent.getStringExtra("name")
+//
+//        val mFragmentManager = supportFragmentManager
+//        val mFragmentTransaction = mFragmentManager.beginTransaction()
+//        val mFragment = HomeFragment()
+//
+//        val bundle = Bundle()
+//        bundle.putString("name", name)
+//        mFragment.arguments = bundle
+//        mFragmentTransaction.add(R.id.fragment_home, mFragment).commit()
+
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
