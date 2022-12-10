@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -34,27 +35,39 @@ class RegisterActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
+        binding.tvRegis.setOnClickListener {
+            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+        }
+
         binding.btnRegister.setOnClickListener {
-            name = binding.edtNama.text.toString().trim()
-            email = binding.edtEmail.text.toString().trim()
+            val name = binding.edtNama.text.toString().trim()
+            val email = binding.edtEmail.text.toString().trim()
             nomorTelp = binding.edtNomor.text.toString().trim()
             alamat = binding.edtAlamat.text.toString().trim()
-            password = binding.edtPassword.text.toString().trim()
+            val password = binding.edtPassword.text.toString().trim()
             Register(email, password)
         }
 
     }
 
     private fun Register(email: String, password: String){
+        showLoading(true)
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this){ task ->
                 if (task.isSuccessful){
+                    showLoading(false)
                     Log.d(TAG, "signInWithEmail:success")
+                    //val user = auth.currentUser
                     Toast.makeText(baseContext, "Berhasil", Toast.LENGTH_SHORT).show()
                     updateUI()
+//                    val intent = Intent(this, LoginActivity::class.java)
+//                    startActivity(intent)
+//                    finish()
                 } else {
+                    showLoading(false)
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                    //val user = auth.currentUser
                     updateUI()
                 }
             }
@@ -89,6 +102,14 @@ class RegisterActivity : AppCompatActivity() {
             .addOnFailureListener {
                 Toast.makeText(this, "Register Gagal", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun showLoading(state: Boolean){
+        if (state == true){
+            binding.progresRegister.visibility = View.VISIBLE
+        } else {
+            binding.progresRegister.visibility = View.GONE
+        }
     }
 
     companion object{
