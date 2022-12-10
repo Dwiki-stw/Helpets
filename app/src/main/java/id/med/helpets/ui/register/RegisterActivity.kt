@@ -94,4 +94,6 @@ class RegisterActivity : AppCompatActivity() {
     companion object{
         private const val TAG = "RegisterActivity"
     }
+
+
 }
