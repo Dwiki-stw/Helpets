@@ -59,11 +59,14 @@ class HomeFragment : Fragment() {
 
       uid = auth.currentUser?.uid.toString()
 
-      databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+      databaseReference = FirebaseDatabase.getInstance().getReference("DataUser")
 
-      if (uid.isNotEmpty()){
+      if (uid.isNotEmpty()) {
           getDataUser()
+      } else {
+          Toast.makeText(context, "Error: Failed", Toast.LENGTH_SHORT).show()
       }
+
       addPets()
 
       binding.rvPets.itemAnimator = null
@@ -148,14 +151,18 @@ class HomeFragment : Fragment() {
   }
 
     private fun getDataUser() {
-        databaseReference.child(uid).addValueEventListener(object : ValueEventListener{
+        showLoading(true)
+        val id = auth.currentUser?.uid.toString()
+        databaseReference.child(id).addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
+                showLoading(false)
                 user = snapshot.getValue(User::class.java)!!
-
+                binding.tvDisplayUsername.setText(user.name)
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                showLoading(false)
+                Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
             }
         })
     }
