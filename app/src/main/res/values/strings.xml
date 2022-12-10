@@ -34,7 +34,7 @@
     <string name="chip_2">Dogs</string>
     <string name="chip_3">Cats</string>
     <string name="text_date">00-00-0000</string>
-    <string name="description">Description...</string>
+    <string name="description">Description</string>
     <string name="cat">cat</string>
     <string name="dog">dog</string>
     <string name="login">LOGIN</string>
@@ -46,4 +46,5 @@
     <string name="edt_password">Masukkan password anda</string>
     <string name="create_post">CREATE POST</string>
     <string name="add_pets">Add Pets</string>
+    <string name="btnDetail">Detail</string>
 </resources>

@@ -6,6 +6,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -18,6 +19,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
@@ -46,9 +48,13 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.btnLogin.setOnClickListener {
-            val email = binding.edtEmail.text.toString()
-            val password = binding.edtPassword.text.toString()
-            login(email, password)
+            if (binding.edtEmail.text!!.isEmpty() || binding.edtPassword.text!!.isEmpty()) {
+                Toast.makeText(this, "Isi data terlebih dahulu !", Toast.LENGTH_SHORT).show()
+            } else {
+                val email = binding.edtEmail.text.toString()
+                val password = binding.edtPassword.text.toString()
+                login(email, password)
+            }
         }
 
         val gso = GoogleSignInOptions
@@ -100,11 +106,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun updateUI(currentUser: FirebaseUser?){
+        showLoading(true)
         if (currentUser != null){
+            showLoading(false)
             Toast.makeText(this, "Login Berhasil !", Toast.LENGTH_SHORT).show()
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
-//            intent.putExtra("email", currentUser.email)
-//            intent.putExtra("name", currentUser.displayName)
             startActivity(intent)
             finish()
         }
@@ -114,17 +120,28 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login(email: String, password: String){
+        showLoading(true)
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this){
                 if (it.isSuccessful){
+                    showLoading(false)
                     Toast.makeText(this, "Login Berhasil !", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 }
                 else{
+                    showLoading(false)
                     Toast.makeText(this, "Login Gagal !", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun showLoading(state: Boolean){
+        if (state == true){
+            binding.progresLogin.visibility = View.VISIBLE
+        } else {
+            binding.progresLogin.visibility = View.GONE
+        }
     }
 
     companion object{

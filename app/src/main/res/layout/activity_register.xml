@@ -67,6 +67,7 @@
             <id.med.helpets.ui.login.customview.EditTextEmail
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
+                android:hint="@string/edt_email"
                 android:layout_height="match_parent"
                 android:background="@drawable/layout_shape"
                 android:backgroundTint="@color/abuabu"/>
@@ -124,6 +125,7 @@
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:hint="@string/edt_password"
                 android:backgroundTint="@color/abuabu"
                 android:background="@drawable/layout_shape"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -161,6 +163,18 @@
             android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="@+id/txt_konfirm"
             app:layout_constraintStart_toEndOf="@+id/txt_konfirm" />
+
+        <ProgressBar
+            android:id="@+id/progres_register"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

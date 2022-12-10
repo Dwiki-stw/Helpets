@@ -15,6 +15,7 @@ import id.med.helpets.R
 import id.med.helpets.adapter.FavoriteAdapter.Companion.removeToFavorite
 import id.med.helpets.databinding.ActivityDetailBinding
 import id.med.helpets.dataclass.Post
+import java.text.SimpleDateFormat
 
 class DetailActivity : AppCompatActivity() {
 
@@ -39,6 +40,10 @@ class DetailActivity : AppCompatActivity() {
         }
 
         val postItem = intent.getParcelableExtra<Post>(EXTRA_POST) as Post
+
+        val date = postItem.date
+        val format = SimpleDateFormat("dd-MM-yyyy HH:mm")
+        val formattedDate = format.format(date)
         id = postItem.id!!
         name = postItem.name!!
 
@@ -48,7 +53,7 @@ class DetailActivity : AppCompatActivity() {
             .load(postItem.photoUrl.toString())
             .into(binding.detailImg)
         binding.apply {
-            binding.detailPetsUploadedTime.text = postItem.date.toString()
+            binding.detailPetsUploadedTime.text = formattedDate
             binding.detailPetsAddress.text = postItem.address
             binding.detailPetsDescription.text = postItem.description
             binding.detailPetsUsername.text = postItem.name

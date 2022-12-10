@@ -50,39 +50,39 @@
             android:id="@+id/detail_pets_uploaded_time"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginStart="17dp"
             android:layout_marginTop="8dp"
             android:lineSpacingExtra="3sp"
             android:text="@string/detail_pets_uploaded_time"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/detail_pets_address"
             app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
         <TextView
             android:id="@+id/detail_pets_address"
             android:layout_width="350dp"
             android:layout_height="40dp"
-            android:layout_marginStart="17dp"
             android:layout_marginTop="4dp"
             android:gravity="center_vertical"
             android:lineSpacingExtra="3sp"
             android:maxLines="2"
             android:text="@string/detail_pets_location"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="@color/black"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/detail_pets_description"
             app:layout_constraintTop_toBottomOf="@+id/detail_pets_uploaded_time" />
 
         <TextView
             android:id="@+id/detail_pets_description"
-            android:layout_width="379dp"
+            android:layout_width="360dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="17dp"
+            android:layout_margin="20dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_vertical"
             android:lineSpacingExtra="4sp"
-            android:maxLines="7"
+            android:maxLines="11"
             android:text="@string/detail_pets_description"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/black"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -91,40 +91,28 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="379dp"
+            android:layout_width="370dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="17dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_vertical"
             android:lineSpacingExtra="4sp"
             android:text="@string/posted_by"
             android:textColor="@color/black"
             android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/detail_pets_description"
             app:layout_constraintTop_toBottomOf="@+id/detail_pets_description" />
-
-        <ImageView
-            android:id="@+id/detail_pets_username_picture"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/ic_account"
-            app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <TextView
             android:id="@+id/detail_pets_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
             android:text="@string/detail_pets_user_post"
             android:textColor="@color/black"
-            android:textStyle="bold"
             android:textSize="19sp"
-            app:layout_constraintBottom_toBottomOf="@+id/detail_pets_username_picture"
-            app:layout_constraintStart_toEndOf="@+id/detail_pets_username_picture"
-            app:layout_constraintTop_toTopOf="@+id/detail_pets_username_picture" />
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
