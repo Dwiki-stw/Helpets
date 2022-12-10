@@ -82,19 +82,21 @@ class RegisterActivity : AppCompatActivity() {
         hashMap["nomorTelepon"] = nomorTelp
         hashMap["alamat"] = alamat
         hashMap["password"] = password
-        hashMap["userType"] = "user"
 
         databaseReference = FirebaseDatabase.getInstance().getReference("DataUser")
 
-        val user = User(name, email, nomorTelp, alamat, password)
+        val user = User(uid, name, email, nomorTelp, alamat, password)
         if (uid != null){
+            showLoading(true)
             databaseReference.child(uid).setValue(user)
                 .addOnCompleteListener{
                     if (it.isSuccessful){
+                        showLoading(false)
                         Toast.makeText(this, "Register Berhasil", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                         finish()
                     } else {
+                        showLoading(false)
                         Toast.makeText(this, "Register Gagal", Toast.LENGTH_SHORT).show()
                     }
                 }
