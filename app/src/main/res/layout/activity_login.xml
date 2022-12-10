@@ -53,6 +53,7 @@
             android:id="@+id/edt_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:hint="@string/edt_email"
             android:background="@drawable/layout_shape"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,6 +82,7 @@
         app:startIconDrawable="@drawable/ic_baseline_vpn_key_24">
         <id.med.helpets.ui.login.customview.EditTextPassword
             android:id="@+id/edt_password"
+            android:hint="@string/edt_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/layout_shape"/>

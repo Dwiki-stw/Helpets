@@ -67,6 +67,7 @@
             <id.med.helpets.ui.login.customview.EditTextEmail
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
+                android:hint="@string/edt_email"
                 android:layout_height="match_parent"
                 android:background="@drawable/layout_shape"
                 android:backgroundTint="@color/abuabu"/>
@@ -124,6 +125,7 @@
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:hint="@string/edt_password"
                 android:backgroundTint="@color/abuabu"
                 android:background="@drawable/layout_shape"/>
         </com.google.android.material.textfield.TextInputLayout>

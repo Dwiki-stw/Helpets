@@ -32,8 +32,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
-    private var email = ""
-    private var password = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +50,9 @@ class LoginActivity : AppCompatActivity() {
             if (binding.edtEmail.text!!.isEmpty() || binding.edtPassword.text!!.isEmpty()) {
                 Toast.makeText(this, "Isi data terlebih dahulu !", Toast.LENGTH_SHORT).show()
             } else {
-                login()
+                val email = binding.edtEmail.text.toString()
+                val password = binding.edtPassword.text.toString()
+                login(email, password)
             }
         }
 
@@ -118,18 +118,20 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun login(){
+    private fun login(email: String, password: String){
         showLoading(true)
         auth.signInWithEmailAndPassword(email, password)
-            .addOnSuccessListener {
-                showLoading(false)
-                Toast.makeText(this, "Login Berhasil !", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-            }
-            .addOnFailureListener { e ->
-                showLoading(false)
-                Toast.makeText(this, "Login Gagal !", Toast.LENGTH_SHORT).show()
+            .addOnCompleteListener(this){
+                if (it.isSuccessful){
+                    showLoading(false)
+                    Toast.makeText(this, "Login Berhasil !", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
+                else{
+                    showLoading(false)
+                    Toast.makeText(this, "Login Gagal !", Toast.LENGTH_SHORT).show()
+                }
             }
     }
 

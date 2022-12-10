@@ -40,12 +40,17 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         binding.btnRegister.setOnClickListener {
-            val name = binding.edtNama.text.toString().trim()
-            val email = binding.edtEmail.text.toString().trim()
+            name = binding.edtNama.text.toString().trim()
+            email = binding.edtEmail.text.toString().trim()
             nomorTelp = binding.edtNomor.text.toString().trim()
             alamat = binding.edtAlamat.text.toString().trim()
-            val password = binding.edtPassword.text.toString().trim()
-            Register(email, password)
+            password = binding.edtPassword.text.toString().trim()
+
+            if (name.isEmpty() || email.isEmpty() || nomorTelp.isEmpty() || alamat.isEmpty() || password.isEmpty()){
+                Toast.makeText(this, "Lengkapi data diri anda terlebih dahulu !", Toast.LENGTH_LONG).show()
+            } else {
+                Register(email, password)
+            }
         }
 
     }

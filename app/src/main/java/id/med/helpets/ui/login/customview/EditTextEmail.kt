@@ -29,18 +29,19 @@ class EditTextEmail : AppCompatEditText {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        hint = context.getString(R.string.edt_email)
+        hint = ""
     }
 
     private fun init(){
         maxLines = 1
         inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+        backgroundEditText = ContextCompat.getDrawable(context, R.drawable.layout_shape) as Drawable
         addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
             }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            override fun onTextChanged(s: CharSequence?, before: Int, count: Int, p3: Int) {
                 setSelection(text!!.length)
                 if (s != null){
                     if (s.isEmpty()){
