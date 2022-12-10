@@ -9,16 +9,19 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import id.med.helpets.R
 import id.med.helpets.databinding.ActivityRegisterBinding
+import id.med.helpets.dataclass.User
 import id.med.helpets.ui.login.LoginActivity
 import id.med.helpets.ui.main.MainActivity
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var databaseReference: DatabaseReference
     private var name = ""
     private var email = ""
     private var nomorTelp = ""
@@ -40,12 +43,11 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         binding.btnRegister.setOnClickListener {
-            name = binding.edtNama.text.toString().trim()
-            email = binding.edtEmail.text.toString().trim()
-            nomorTelp = binding.edtNomor.text.toString().trim()
-            alamat = binding.edtAlamat.text.toString().trim()
-            password = binding.edtPassword.text.toString().trim()
-
+            name = binding.edtNama.text.toString()
+            email = binding.edtEmail.text.toString()
+            nomorTelp = binding.edtNomor.text.toString()
+            alamat = binding.edtAlamat.text.toString()
+            password = binding.edtPassword.text.toString()
             if (name.isEmpty() || email.isEmpty() || nomorTelp.isEmpty() || alamat.isEmpty() || password.isEmpty()){
                 Toast.makeText(this, "Lengkapi data diri anda terlebih dahulu !", Toast.LENGTH_LONG).show()
             } else {
@@ -62,51 +64,41 @@ class RegisterActivity : AppCompatActivity() {
                 if (task.isSuccessful){
                     showLoading(false)
                     Log.d(TAG, "signInWithEmail:success")
-                    //val user = auth.currentUser
-                    Toast.makeText(baseContext, "Berhasil", Toast.LENGTH_SHORT).show()
                     updateUI()
-//                    val intent = Intent(this, LoginActivity::class.java)
-//                    startActivity(intent)
-//                    finish()
                 } else {
                     showLoading(false)
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                    //val user = auth.currentUser
                     updateUI()
                 }
             }
     }
-//
-//    private fun updateUI(currentUser: FirebaseUser?){
-//        if (currentUser != null){
-//            startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
-//            finish()
-//        }
-//    }
 
     private fun updateUI(){
-        val timestamp = System.currentTimeMillis()
-        val uid = auth.uid
+        val uid = auth.currentUser?.uid
         val hashMap: HashMap<String, Any?> = HashMap()
         hashMap["uid"] = uid
         hashMap["name"] = name
         hashMap["email"] = email
-        hashMap["profileImage"] = ""
+        hashMap["nomorTelepon"] = nomorTelp
+        hashMap["alamat"] = alamat
+        hashMap["password"] = password
         hashMap["userType"] = "user"
-        hashMap["timestamp"] = timestamp
 
-        val ref = FirebaseDatabase.getInstance().getReference("Users")
-        ref.child(uid!!)
-            .setValue(hashMap)
-            .addOnSuccessListener {
-                Toast.makeText(this, "Register Berhasil", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
-                finish()
-            }
-            .addOnFailureListener {
-                Toast.makeText(this, "Register Gagal", Toast.LENGTH_SHORT).show()
-            }
+        databaseReference = FirebaseDatabase.getInstance().getReference("DataUser")
+
+        val user = User(name, email, nomorTelp, alamat, password)
+        if (uid != null){
+            databaseReference.child(uid).setValue(user)
+                .addOnCompleteListener{
+                    if (it.isSuccessful){
+                        Toast.makeText(this, "Register Berhasil", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+                        finish()
+                    } else {
+                        Toast.makeText(this, "Register Gagal", Toast.LENGTH_SHORT).show()
+                    }
+                }
+        }
     }
 
     private fun showLoading(state: Boolean){

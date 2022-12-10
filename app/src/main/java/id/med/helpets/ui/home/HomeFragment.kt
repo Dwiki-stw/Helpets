@@ -1,31 +1,24 @@
 package id.med.helpets.ui.home
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import id.med.helpets.R
+import id.med.helpets.dataclass.User
 import id.med.helpets.adapter.ListPetsAdapter
 import id.med.helpets.databinding.FragmentHomeBinding
-import id.med.helpets.dataclass.Post
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
-import java.util.concurrent.CountDownLatch
 
 class HomeFragment : Fragment() {
 
@@ -33,6 +26,9 @@ class HomeFragment : Fragment() {
     private lateinit var db: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
     private val binding get() = _binding!!
+    private lateinit var uid: String
+    private lateinit var databaseReference: DatabaseReference
+    private lateinit var user: User
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -58,6 +54,13 @@ class HomeFragment : Fragment() {
       manager.reverseLayout = true
       manager.stackFromEnd = true
 
+      uid = auth.currentUser?.uid.toString()
+
+      databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+
+      if (uid.isNotEmpty()){
+          getDataUser()
+      }
       addPets()
 
       binding.rvPets.itemAnimator = null
@@ -113,6 +116,19 @@ class HomeFragment : Fragment() {
 
       return root
   }
+
+    private fun getDataUser() {
+        databaseReference.child(uid).addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                user = snapshot.getValue(User::class.java)!!
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
