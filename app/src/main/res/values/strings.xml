@@ -47,4 +47,7 @@
     <string name="create_post">CREATE POST</string>
     <string name="add_pets">Add Pets</string>
     <string name="btnDetail">Detail</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="edit">EDIT</string>
 </resources>

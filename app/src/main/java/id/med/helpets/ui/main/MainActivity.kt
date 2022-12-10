@@ -21,18 +21,6 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-
-//        val name = intent.getStringExtra("name")
-//
-//        val mFragmentManager = supportFragmentManager
-//        val mFragmentTransaction = mFragmentManager.beginTransaction()
-//        val mFragment = HomeFragment()
-//
-//        val bundle = Bundle()
-//        bundle.putString("name", name)
-//        mFragment.arguments = bundle
-//        mFragmentTransaction.add(R.id.fragment_home, mFragment).commit()
-
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
@@ -42,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             R.id.navigation_home,
             R.id.navigation_favorite,
             R.id.navigation_maps,
-            R.id.navigation_notifications
+            R.id.navigation_profile
         ))
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
