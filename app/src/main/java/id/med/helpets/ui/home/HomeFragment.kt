@@ -1,6 +1,8 @@
 package id.med.helpets.ui.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +27,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private lateinit var db: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
+    private lateinit var adapter: ListPetsAdapter
     private val binding get() = _binding!!
     private lateinit var uid: String
     private lateinit var databaseReference: DatabaseReference
@@ -73,7 +76,16 @@ class HomeFragment : Fragment() {
           showLoading(true)
           petsRef.addListenerForSingleValueEvent( object : ValueEventListener {
               override fun onDataChange(snapshot: DataSnapshot) {
-                  setUpRecycleView(snapshot)
+
+                  manager.reverseLayout = true
+                  manager.stackFromEnd = true
+
+                  adapter = ListPetsAdapter(snapshot)
+
+                  binding.rvPets.layoutManager = manager
+                  binding.rvPets.adapter = adapter
+                  binding.rvPets.itemAnimator = null
+
                   showLoading(false)
               }
 
@@ -86,9 +98,18 @@ class HomeFragment : Fragment() {
 
       binding.chipDogs.setOnClickListener {
           showLoading(true)
-          petsRef.orderByChild("category").equalTo("dog").addListenerForSingleValueEvent( object : ValueEventListener {
+          petsRef.orderByChild("category").equalTo("DOG").addListenerForSingleValueEvent( object : ValueEventListener {
               override fun onDataChange(snapshot: DataSnapshot) {
-                  setUpRecycleView(snapshot)
+
+                  manager.reverseLayout = true
+                  manager.stackFromEnd = true
+
+                  adapter = ListPetsAdapter(snapshot)
+
+                  binding.rvPets.layoutManager = manager
+                  binding.rvPets.adapter = adapter
+                  binding.rvPets.itemAnimator = null
+
                   showLoading(false)
               }
 
@@ -101,9 +122,18 @@ class HomeFragment : Fragment() {
 
       binding.chipCats.setOnClickListener {
           showLoading(true)
-          petsRef.orderByChild("category").equalTo("cat").addListenerForSingleValueEvent( object :ValueEventListener {
+          petsRef.orderByChild("category").equalTo("CAT").addListenerForSingleValueEvent( object :ValueEventListener {
               override fun onDataChange(snapshot: DataSnapshot) {
-                  setUpRecycleView(snapshot)
+
+                  manager.reverseLayout = true
+                  manager.stackFromEnd = true
+
+                  adapter = ListPetsAdapter(snapshot)
+
+                  binding.rvPets.layoutManager = manager
+                  binding.rvPets.adapter = adapter
+                  binding.rvPets.itemAnimator = null
+
                   showLoading(false)
               }
 
@@ -139,7 +169,15 @@ class HomeFragment : Fragment() {
         showLoading(true)
         petsRef.addListenerForSingleValueEvent( object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                setUpRecycleView(snapshot)
+                val manager = LinearLayoutManager(context)
+                manager.reverseLayout = true
+                manager.stackFromEnd = true
+
+                adapter = ListPetsAdapter(snapshot)
+
+                binding.rvPets.layoutManager = manager
+                binding.rvPets.adapter = adapter
+                binding.rvPets.itemAnimator = null
                 showLoading(false)
             }
 
@@ -148,18 +186,6 @@ class HomeFragment : Fragment() {
             }
 
         })
-    }
-
-    private fun setUpRecycleView(snapshot: DataSnapshot) {
-        val manager = LinearLayoutManager(context)
-        manager.reverseLayout = true
-        manager.stackFromEnd = true
-
-        val adapter: ListPetsAdapter = ListPetsAdapter(snapshot)
-
-        binding.rvPets.layoutManager = manager
-        binding.rvPets.adapter = adapter
-        binding.rvPets.itemAnimator = null
     }
 
     private fun addPets(){
