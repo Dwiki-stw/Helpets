@@ -8,8 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -19,9 +24,10 @@ import id.med.helpets.R
 import id.med.helpets.dataclass.User
 import id.med.helpets.adapter.ListPetsAdapter
 import id.med.helpets.databinding.FragmentHomeBinding
+import id.med.helpets.dataclass.Post
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
-
+import java.util.concurrent.CountDownLatch
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -33,116 +39,116 @@ class HomeFragment : Fragment() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var user: User
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
-      _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-      val root: View = binding.root
+        val root: View = binding.root
 
-      auth = Firebase.auth
-      db = Firebase.database
-      val petsRef = db.reference.child(MESSAGES_CHILD)
+        auth = Firebase.auth
+        db = Firebase.database
+        val petsRef = db.reference.child(MESSAGES_CHILD)
 
-      val manager = LinearLayoutManager(context)
-      manager.reverseLayout = true
-      manager.stackFromEnd = true
+        val manager = LinearLayoutManager(context)
+        manager.reverseLayout = true
+        manager.stackFromEnd = true
 
-      uid = auth.currentUser?.uid.toString()
+        uid = auth.currentUser?.uid.toString()
 
-      databaseReference = FirebaseDatabase.getInstance().getReference("DataUser")
+        databaseReference = FirebaseDatabase.getInstance().getReference("DataUser")
 
-      if (uid.isNotEmpty()) {
-          getDataUser()
-      } else {
-          Toast.makeText(context, "Error: Failed", Toast.LENGTH_SHORT).show()
-      }
+        if (uid.isNotEmpty()) {
+            getDataUser()
+        } else {
+            Toast.makeText(context, "Error: Failed", Toast.LENGTH_SHORT).show()
+        }
 
-      addPets()
+        addPets()
 
-      binding.rvPets.itemAnimator = null
+        binding.rvPets.itemAnimator = null
 
-      binding.chipNearest.isFocusedByDefault
-      binding.chipGroup.isSelectionRequired = true;
-      binding.chipNearest.isChecked = true
+        binding.chipNearest.isFocusedByDefault
+        binding.chipGroup.isSelectionRequired = true;
+        binding.chipNearest.isChecked = true
 
-      binding.chipNearest.setOnClickListener {
-          showLoading(true)
-          petsRef.addListenerForSingleValueEvent( object : ValueEventListener {
-              override fun onDataChange(snapshot: DataSnapshot) {
+        binding.chipNearest.setOnClickListener {
+            showLoading(true)
+            petsRef.addListenerForSingleValueEvent( object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
 
-                  manager.reverseLayout = true
-                  manager.stackFromEnd = true
+                    manager.reverseLayout = true
+                    manager.stackFromEnd = true
 
-                  adapter = ListPetsAdapter(snapshot)
+                    adapter = ListPetsAdapter(snapshot)
 
-                  binding.rvPets.layoutManager = manager
-                  binding.rvPets.adapter = adapter
-                  binding.rvPets.itemAnimator = null
+                    binding.rvPets.layoutManager = manager
+                    binding.rvPets.adapter = adapter
+                    binding.rvPets.itemAnimator = null
 
-                  showLoading(false)
-              }
+                    showLoading(false)
+                }
 
-              override fun onCancelled(error: DatabaseError) {
-                  Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
-              }
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
+                }
 
-          })
-      }
+            })
+        }
 
-      binding.chipDogs.setOnClickListener {
-          showLoading(true)
-          petsRef.orderByChild("category").equalTo("DOG").addListenerForSingleValueEvent( object : ValueEventListener {
-              override fun onDataChange(snapshot: DataSnapshot) {
+        binding.chipDogs.setOnClickListener {
+            showLoading(true)
+            petsRef.orderByChild("category").equalTo("DOG").addListenerForSingleValueEvent( object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
 
-                  manager.reverseLayout = true
-                  manager.stackFromEnd = true
+                    manager.reverseLayout = true
+                    manager.stackFromEnd = true
 
-                  adapter = ListPetsAdapter(snapshot)
+                    adapter = ListPetsAdapter(snapshot)
 
-                  binding.rvPets.layoutManager = manager
-                  binding.rvPets.adapter = adapter
-                  binding.rvPets.itemAnimator = null
+                    binding.rvPets.layoutManager = manager
+                    binding.rvPets.adapter = adapter
+                    binding.rvPets.itemAnimator = null
 
-                  showLoading(false)
-              }
+                    showLoading(false)
+                }
 
-              override fun onCancelled(error: DatabaseError) {
-                  Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
-              }
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
+                }
 
-          })
-      }
+            })
+        }
 
-      binding.chipCats.setOnClickListener {
-          showLoading(true)
-          petsRef.orderByChild("category").equalTo("CAT").addListenerForSingleValueEvent( object :ValueEventListener {
-              override fun onDataChange(snapshot: DataSnapshot) {
+        binding.chipCats.setOnClickListener {
+            showLoading(true)
+            petsRef.orderByChild("category").equalTo("CAT").addListenerForSingleValueEvent( object :ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
 
-                  manager.reverseLayout = true
-                  manager.stackFromEnd = true
+                    manager.reverseLayout = true
+                    manager.stackFromEnd = true
 
-                  adapter = ListPetsAdapter(snapshot)
+                    adapter = ListPetsAdapter(snapshot)
 
-                  binding.rvPets.layoutManager = manager
-                  binding.rvPets.adapter = adapter
-                  binding.rvPets.itemAnimator = null
+                    binding.rvPets.layoutManager = manager
+                    binding.rvPets.adapter = adapter
+                    binding.rvPets.itemAnimator = null
 
-                  showLoading(false)
-              }
+                    showLoading(false)
+                }
 
-              override fun onCancelled(error: DatabaseError) {
-                  Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
-              }
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
+                }
 
-          })
-      }
+            })
+        }
 
-      return root
-  }
+        return root
+    }
 
     private fun getDataUser() {
         showLoading(true)

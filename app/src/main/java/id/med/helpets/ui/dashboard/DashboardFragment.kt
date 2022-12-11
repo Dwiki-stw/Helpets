@@ -55,15 +55,21 @@ private var _binding: FragmentDashboardBinding? = null
 
     private fun loadFavoritePet() {
         petsList = ArrayList()
-        val ref = FirebaseDatabase.getInstance().getReference("Users")
+        val ref = FirebaseDatabase.getInstance().getReference("DataUser")
         ref.child(firebaseAuth.uid!!).child("Favorites")
             .addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     petsList.clear()
                     for (ds in snapshot.children){
                         val favId = "${ds.child("favId").value}"
+                        val name = "${ds.child("name").value}"
+                        val address = "${ds.child("address").value}"
+                        val photoUrl = "${ds.child("photoUrl").value}"
                         val modelPet = Post()
                         modelPet.id = favId
+                        modelPet.name = name
+                        modelPet.photoUrl = photoUrl
+                        modelPet.address = address
 
                         petsList.add(modelPet)
                     }

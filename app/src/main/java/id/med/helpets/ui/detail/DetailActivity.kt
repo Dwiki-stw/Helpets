@@ -46,6 +46,10 @@ class DetailActivity : AppCompatActivity() {
         val formattedDate = format.format(date)
         id = postItem.id!!
         name = postItem.name!!
+        address = postItem.address!!
+        photoUrl = postItem.photoUrl!!
+        isFavorite = postItem.isFavorite.toString()!!
+
 
 
 
@@ -91,8 +95,10 @@ class DetailActivity : AppCompatActivity() {
         hashMap["favId"] = id
         hashMap["name"] = name
         hashMap["timestamp"] = timestamp
+        hashMap["address"] = address
+        hashMap["photoUrl"] = photoUrl
 
-        val ref = FirebaseDatabase.getInstance().getReference("Users")
+        val ref = FirebaseDatabase.getInstance().getReference("DataUser")
         ref.child(firebaseAuth.uid!!).child("Favorites").child(id)
             .setValue(hashMap)
             .addOnSuccessListener {
@@ -120,7 +126,7 @@ class DetailActivity : AppCompatActivity() {
 //    }
     private fun checkIsFavorite(){
         Log.d(TAG,"checkIsFavorite: Checking if book is in fav or not")
-        val ref = FirebaseDatabase.getInstance().getReference("Users")
+        val ref = FirebaseDatabase.getInstance().getReference("DataUser")
         ref.child(firebaseAuth.uid!!).child("Favorites").child(id)
             .addValueEventListener(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -147,5 +153,8 @@ class DetailActivity : AppCompatActivity() {
         const val EXTRA_POST = "extra_post"
         private var id = "id"
         private var name = "name"
+        private var photoUrl = "phoroUrl"
+        private var address = "address"
+        private var isFavorite = "false"
     }
 }

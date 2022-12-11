@@ -85,7 +85,7 @@ class RegisterActivity : AppCompatActivity() {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("DataUser")
 
-        val user = User(uid, name, email, nomorTelp, alamat, password)
+        val user = User(name, email, nomorTelp, alamat,password)
         if (uid != null){
             showLoading(true)
             databaseReference.child(uid).setValue(user)

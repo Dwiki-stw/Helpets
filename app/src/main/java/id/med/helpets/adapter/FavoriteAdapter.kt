@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -58,6 +59,10 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.HolderPetFavorite> 
         holder.itemView.setOnClickListener {
             val intent = Intent(context,FragmentDashboardBinding::class.java)
             intent.putExtra("favId",model.id)
+            intent.putExtra("name",model.name)
+            intent.putExtra("address",model.address)
+            intent.putExtra("photoUrl",model.photoUrl)
+
             context.startActivity(intent)
         }
 
@@ -65,7 +70,10 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.HolderPetFavorite> 
             removeToFavorite(context, model.id.toString())
         }
         holder.tvUsername.text = model.name
-        holder.tvAddress.text = model.id
+        holder.tvAddress.text = model.address
+        Glide.with(holder.itemView.context)
+            .load(model.photoUrl)
+            .into(binding.ivStory)
     }
 
     private fun loadPetDetails(model: Post, holder: HolderPetFavorite) {
@@ -136,7 +144,7 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.HolderPetFavorite> 
 
             val firebaseAuth = FirebaseAuth.getInstance()
 
-            val ref = FirebaseDatabase.getInstance().getReference("Users")
+            val ref = FirebaseDatabase.getInstance().getReference("DataUser")
             ref.child(firebaseAuth.uid!!).child("Favorites").child(petId)
                 .removeValue()
                 .addOnSuccessListener {
