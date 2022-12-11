@@ -23,7 +23,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="tiramisu">
         <activity
-            android:name=".DetailForFavoriteActivity"
+            android:name=".ui.detail.DetailActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -50,7 +50,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.detail.DetailActivity"
+            android:name=".DetailForFavoriteActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

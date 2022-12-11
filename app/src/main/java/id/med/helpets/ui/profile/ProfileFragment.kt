@@ -53,6 +53,7 @@ class ProfileFragment : Fragment() {
 
         binding.btnLogout.setOnClickListener {
             signOut()
+            activity?.finish()
         }
 
         binding.btnUpdate.setOnClickListener {

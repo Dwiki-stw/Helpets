@@ -1,6 +1,5 @@
 package id.med.helpets.adapter
 
-import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -16,15 +15,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import id.med.helpets.DetailForFavoriteActivity
-import id.med.helpets.databinding.FragmentDashboardBinding
-import id.med.helpets.databinding.ItemRowUserBinding
 import id.med.helpets.databinding.ItmRowFavoriteBinding
 import id.med.helpets.dataclass.Post
-import id.med.helpets.ui.detail.DetailActivity
-import java.sql.Timestamp
-import java.text.DateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.HolderPetFavorite> {
 
