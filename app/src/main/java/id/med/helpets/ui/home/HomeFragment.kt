@@ -1,20 +1,13 @@
 package id.med.helpets.ui.home
 
 import android.os.Bundle
-import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -24,28 +17,24 @@ import id.med.helpets.R
 import id.med.helpets.dataclass.User
 import id.med.helpets.adapter.ListPetsAdapter
 import id.med.helpets.databinding.FragmentHomeBinding
-import id.med.helpets.dataclass.Post
-import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_home.view.*
-import java.util.concurrent.CountDownLatch
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private lateinit var binding: FragmentHomeBinding
     private lateinit var db: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
     private lateinit var adapter: ListPetsAdapter
-    private val binding get() = _binding!!
+    //private val binding get() = _binding!!
     private lateinit var uid: String
     private lateinit var databaseReference: DatabaseReference
     private lateinit var user: User
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View {
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+      binding = FragmentHomeBinding.inflate(inflater, container, false)
 
         val root: View = binding.root
 
@@ -208,11 +197,6 @@ class HomeFragment : Fragment() {
         } else {
             binding.loadingHome.visibility = View.INVISIBLE
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     companion object {

@@ -20,7 +20,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -38,6 +43,7 @@ class CreatePostActivity : AppCompatActivity() {
     private val binding get() = _binding!!
 
     private lateinit var db: FirebaseDatabase
+    private lateinit var auth: FirebaseAuth
     private lateinit var image: Uri
 
     private lateinit var loading : Dialog
@@ -51,6 +57,7 @@ class CreatePostActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        auth = Firebase.auth
         db = Firebase.database
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
@@ -58,6 +65,8 @@ class CreatePostActivity : AppCompatActivity() {
         getMyLocation()
 
         setupLoading()
+
+        getNameUser()
 
         binding.buttonBack.setOnClickListener {
             finish()
@@ -96,7 +105,6 @@ class CreatePostActivity : AppCompatActivity() {
             if(checkData()){
                 sendPost(image)
             }
-
         }
     }
 
@@ -153,7 +161,7 @@ class CreatePostActivity : AppCompatActivity() {
         //create Post
         val post = Post(
             id,
-            "test",
+            NAME,
             description,
             url,
             CATEGORY,
@@ -184,6 +192,23 @@ class CreatePostActivity : AppCompatActivity() {
         }else{
             Toast.makeText(this, "Gagal Memuat Foto", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun getNameUser(){
+        loading.show()
+        val id = auth.currentUser?.uid.toString()
+        val databaseReference = FirebaseDatabase.getInstance().getReference("DataUser")
+        databaseReference.child(id).addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                NAME = snapshot.child("name").getValue(String::class.java)!!
+                loading.cancel()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d(TAG, error.message)
+            }
+
+        })
     }
 
     private fun getMyLocation() {
@@ -264,7 +289,6 @@ class CreatePostActivity : AppCompatActivity() {
         }else{
             binding.tvDecription.error = "Decription tidak boleh kosong"
         }
-
         return false
     }
 
@@ -293,7 +317,8 @@ class CreatePostActivity : AppCompatActivity() {
 
     companion object{
         private const val TAG = "CreatePost"
-
+        
+        private var NAME = "name"
         private var ADDRESS = "address"
         private var CATEGORY = "category"
         private var LAT = 0.0

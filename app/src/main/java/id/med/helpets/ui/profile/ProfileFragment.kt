@@ -19,12 +19,11 @@ import id.med.helpets.ui.login.LoginActivity
 
 class ProfileFragment : Fragment() {
 
-    private var _binding: FragmentProfileBinding? = null
+    private lateinit var binding: FragmentProfileBinding
     private lateinit var databaseReference: DatabaseReference
     private lateinit var db: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
     private lateinit var uid: String
-    private val binding get() = _binding!!
     private lateinit var user: User
     private var name = ""
     private var email = ""
@@ -36,7 +35,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         databaseReference = FirebaseDatabase.getInstance().getReference("DataUser")
@@ -101,8 +100,8 @@ class ProfileFragment : Fragment() {
             "name" to name,
             "email" to email,
             "nomorTelepon" to nomorTelp,
-            "alamat" to alamat,
-            "password" to password
+            "alamat" to Alamat,
+            "password" to Password
         )
 
         databaseReference.child(uid).updateChildren(user).addOnSuccessListener {
@@ -115,11 +114,6 @@ class ProfileFragment : Fragment() {
         }.addOnFailureListener {
             Toast.makeText(context, "Gagal Diubah", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     companion object {
