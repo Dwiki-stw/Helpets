@@ -49,6 +49,8 @@ class DetailActivity : AppCompatActivity() {
         address = postItem.address!!
         photoUrl = postItem.photoUrl!!
         isFavorite = postItem.isFavorite.toString()!!
+        lat = postItem.lat!!
+        lon = postItem.lon!!
 
 
 
@@ -97,6 +99,8 @@ class DetailActivity : AppCompatActivity() {
         hashMap["timestamp"] = timestamp
         hashMap["address"] = address
         hashMap["photoUrl"] = photoUrl
+        hashMap["lat"] = lat
+        hashMap["lon"] = lon
 
         val ref = FirebaseDatabase.getInstance().getReference("DataUser")
         ref.child(firebaseAuth.uid!!).child("Favorites").child(id)
@@ -156,5 +160,7 @@ class DetailActivity : AppCompatActivity() {
         private var photoUrl = "phoroUrl"
         private var address = "address"
         private var isFavorite = "false"
+        private var lon = 0.0
+        private var lat = 0.0
     }
 }

@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import id.med.helpets.DetailForFavoriteActivity
 import id.med.helpets.databinding.FragmentDashboardBinding
 import id.med.helpets.databinding.ItemRowUserBinding
 import id.med.helpets.databinding.ItmRowFavoriteBinding
@@ -54,14 +55,19 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.HolderPetFavorite> 
 
     override fun onBindViewHolder(holder: HolderPetFavorite, position: Int) {
         val model = petsArray[position]
+
         loadPetDetails(model,holder)
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context,FragmentDashboardBinding::class.java)
+            val intent = Intent(context,DetailForFavoriteActivity::class.java)
             intent.putExtra("favId",model.id)
             intent.putExtra("name",model.name)
             intent.putExtra("address",model.address)
             intent.putExtra("photoUrl",model.photoUrl)
+            intent.putExtra("description",model.description)
+//            intent.putExtra("lat",model.lat)
+//            intent.putExtra("lon",model.lon)
+          //  intent.putExtra("photoUrl",model.photoUrl)
 
             context.startActivity(intent)
         }
@@ -86,17 +92,17 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.HolderPetFavorite> 
                     val id = "${snapshot.child("id").value}"
                     val address = "${snapshot.child("address").value}"
                     val category = "${snapshot.child("category").value}"
-                   // val date = "${snapshot.child("date").value}"
+//                    val date = "${snapshot.child("date").value}"
                     val description = "${snapshot.child("description").value}"
-//                    val lat = "${snapshot.child("lat").value}"
-//                    val lon = "${snapshot.child("lon").value}"
-                    val name = "${snapshot.child("id").value}"
+                    val lat = "${snapshot.child("lat").value}"
+                    val lon = "${snapshot.child("lon").value}"
+                    val name = "${snapshot.child("name").value}"
                     val photoUrl = "${snapshot.child("photoUrl").value}"
 
                     model.isFavorite = true
                     model.name = name
                     model.id = id
-                 //   model.date = date.toLong()
+//                    model.date = date.toLong()
                     model.address = address
                     model.category = category
                     model.description = description
