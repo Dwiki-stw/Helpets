@@ -43,12 +43,6 @@ class HomeFragment : Fragment() {
 
       val root: View = binding.root
 
-//      val firebaseUser = auth.currentUser
-//
-//      val name = firebaseUser?.displayName
-//
-//      binding.tvDisplayUsername.text = name
-
       auth = Firebase.auth
       db = Firebase.database
       val petsRef = db.reference.child(MESSAGES_CHILD)
@@ -157,6 +151,7 @@ class HomeFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 showLoading(false)
                 user = snapshot.getValue(User::class.java)!!
+                //user = snapshot.child("name").getValue(User::class.java)!!
                 binding.tvDisplayUsername.setText(user.name)
             }
 
