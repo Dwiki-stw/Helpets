@@ -12,8 +12,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import id.med.helpets.R
-import id.med.helpets.databinding.FragmentHomeBinding
+import id.med.helpets.UpdateActivity
 import id.med.helpets.databinding.FragmentProfileBinding
 import id.med.helpets.dataclass.User
 import id.med.helpets.ui.login.LoginActivity
@@ -27,6 +26,11 @@ class ProfileFragment : Fragment() {
     private lateinit var uid: String
     private val binding get() = _binding!!
     private lateinit var user: User
+    private var name = ""
+    private var email = ""
+    private var nomorTelp = ""
+    private var alamat = ""
+    private var password = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,12 +56,16 @@ class ProfileFragment : Fragment() {
             signOut()
         }
 
-//        name = binding.edtNama.text.toString()
-//        email = binding.edtEmail.text.toString()
-//        nomorTelp = binding.edtNomor.text.toString()
-//        alamat = binding.edtAlamat.text.toString()
-//        password = binding.edtPassword.text.toString()
+        binding.btnUpdate.setOnClickListener {
+            //startActivity(Intent(context, UpdateActivity::class.java))
+            name = binding.edtNama.text.toString()
+            email = binding.edtEmail.text.toString()
+            nomorTelp = binding.edtNomor.text.toString()
+            alamat = binding.edtAlamat.text.toString()
+            password = binding.edtPassword.text.toString()
 
+            updateData(name, email, nomorTelp, alamat, password)
+        }
         return root
     }
 
@@ -72,17 +80,41 @@ class ProfileFragment : Fragment() {
         databaseReference.child(id).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 user = snapshot.getValue(User::class.java)!!
-                binding.txtName.setText(user.name)
                 binding.edtNama.setText(user.name)
                 binding.edtEmail.setText(user.email)
                 binding.edtNomor.setText(user.nomorTelp)
                 binding.edtAlamat.setText(user.alamat)
+                binding.edtPassword.setText(user.password)
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(context, "Error: $error", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun updateData(name: String, email: String, nomorTelp: String, Alamat: String, Password: String) {
+        //val uid = auth.currentUser?.uid
+        databaseReference = FirebaseDatabase.getInstance().getReference("DataUser")
+        val user = mapOf<String, String>(
+            //"uid" to uid,
+            "name" to name,
+            "email" to email,
+            "nomorTelepon" to nomorTelp,
+            "alamat" to alamat,
+            "password" to password
+        )
+
+        databaseReference.child(uid).updateChildren(user).addOnSuccessListener {
+            binding.edtNama.text?.clear()
+            binding.edtEmail.text?.clear()
+            binding.edtNomor.text?.clear()
+            binding.edtAlamat.text?.clear()
+            binding.edtPassword.text?.clear()
+            Toast.makeText(context, "Berhasil Diubah", Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener {
+            Toast.makeText(context, "Gagal Diubah", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onDestroyView() {

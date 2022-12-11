@@ -151,6 +151,7 @@ class HomeFragment : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 showLoading(false)
                 user = snapshot.getValue(User::class.java)!!
+                //user = snapshot.child("name").getValue(User::class.java)!!
                 binding.tvDisplayUsername.setText(user.name)
             }
 
